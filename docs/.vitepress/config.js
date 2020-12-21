@@ -3,7 +3,7 @@ module.exports = {
   title: 'CaptainCore',
   description: 'WordPress management toolkit for geeky maintenance professionals.',
   head: [
-    ['link', { rel: 'icon', href: '/assets/img/logo.png' }]
+    ['link', { rel: 'icon', href: '/assets/img/logo.png' } ]
   ],
 
   themeConfig: {
@@ -28,7 +28,7 @@ return [
   {
     text: 'Advanced',
     children: [
-      { text: 'CLI Commands', link: '/guide/cli' },
+      { text: 'CLI', link: '/guide/cli' },
     ]
   }
 ]
