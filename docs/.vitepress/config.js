@@ -44,7 +44,7 @@ return [
   {
     text: 'Advanced',
     children: [
-      { text: 'CLI', link: '/guide/cli' },
+      { text: 'CLI', link: '/guide/cli.html' },
     ]
   }
 ]
