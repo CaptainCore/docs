@@ -4,7 +4,7 @@ Eventually there will be 2 ways to run CaptainCore, hosted and self-hosted. If y
 
 Running your own CaptainCore instance requires the following:
  - WordPress site with the [CaptainCore WordPress plugin](https://github.com/CaptainCore/captaincore).
- - Ubuntu VPS running a CaptainCore instance ([CLI](https://github.com/CaptainCore/captaincore-cli) + [Dispatch](https://github.com/CaptainCore/captaincore-dispatch)).
+ - Ubuntu VPS running a CaptainCore instance ([CLI](https://github.com/CaptainCore/cli) + [Dispatch](https://github.com/CaptainCore/dispatch)).
 
  ## Connecting to an instance
 

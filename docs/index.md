@@ -12,7 +12,7 @@ There are many great tools for managing many WordPress from a central dashboard.
 
 As a power user of both Jetpack and ManageWP, I simply outgrew their solutions. Those products are ideal for 10, 50, or maybe 100s of WordPress sites, not 1000s. I wanted creative control to built features and automation which directly makes my life easier as a [WordPress host reseller 🌟](https://anchor.host/make-reselling-wordpress-hosting-awesome/).
 
-This project began in [Feb 2018](https://github.com/CaptainCore/captaincore-cli/commit/9cac109ba72f7d6e79da29cf90751f749c41bd46) as a crude bulk command line backup script and has evolved into my solution for WordPress maintenance.
+This project began in [Feb 2018](https://github.com/CaptainCore/cli/commit/9cac109ba72f7d6e79da29cf90751f749c41bd46) as a crude bulk command line backup script and has evolved into my solution for WordPress maintenance.
 
 ## Technology overview
 
