@@ -21,9 +21,9 @@ This allows for flexible repeat process. For example updating themes/plugins on 
 With fleet mode enabled a single CaptainCore instance can support sites for many different GUIs (or known as captains). Each captain only has ability to run commands on their respective sites. Internally this works by passing `--captain-id=<captain_id>` onto each `captaincore <command>`. Commands run without a `--captain-id` will default to ID 1. 
 
 Any command can be run across the entire fleet using `--fleet`. For example running `captaincore backup @production --fleet` will loop through all CaptainIDs. For a fleet with 3 CaptainIDs that command will run:
-- `captaincore backup @production --captain-id=1`
-- `captaincore backup @production --captain-id=2`
-- `captaincore backup @production --captain-id=3`
+- `captaincore backup generate @production --captain-id=1`
+- `captaincore backup generate @production --captain-id=2`
+- `captaincore backup generate @production --captain-id=3`
 
 ## Commands
 
