@@ -28,4 +28,5 @@ OK enough warnings, here is a short list of what CaptainCore can do.
 
 - **Complete Maintenance Visibility** - Gathers daily file level changes for themes and plugins. Know preciously what changed and when. Easily rollback any theme or plugin to any version.
 - **Painless Site Monitoring** - Track 100s or 1000s of sites and receive a single email report as site health changes. No more digging through emails to find out what’s happening.
+- **WordPress Magic Logins** - Login as any WordPress user through a secured link. Great for jumping around customer sites for troubleshooting purposes.
 - **Very Efficient Long-Term Backups** - [Powered by Restic](https://captaincore.io/development-update/captaincore-update-26-restic-infused-backups/), backups are incremental, de-duplicated, encrypted and stored with a cloud provider. With very little overhead backups are fully restorable to any previous backup point.

@@ -2,7 +2,7 @@
 
 ## Overview
 
-CaptainCore CLI is what powers CaptainCore. Only administrators of a CaptainCore instance can run commands directly. Regular users will simply use CaptainCore portal powered by WordPress.
+CaptainCore is a command line application for automating WordPress maintenance. Only administrators of a CaptainCore instance would run commands directly. Regular users will simply use [CaptainCore Manager](https://github.com/CaptainCore/captaincore-manager) installed on a WordPress site.
 
 ## How site names work
 
@@ -18,12 +18,12 @@ This allows for flexible repeat process. For example updating themes/plugins on 
 
 ## Fleet mode
 
-With fleet mode enabled a single CaptainCore instance can support sites for many different GUIs (or known as captains). Each captain only has ability to run commands on their respective sites. Internally this works by passing `--captain_id=<captain_id>` onto each `captaincore <command>`. Commands run without a `--captain_id` will default to ID 1. 
+With fleet mode enabled a single CaptainCore instance can support sites for many different GUIs (or known as captains). Each captain only has ability to run commands on their respective sites. Internally this works by passing `--captain-id=<captain_id>` onto each `captaincore <command>`. Commands run without a `--captain-id` will default to ID 1. 
 
 Any command can be run across the entire fleet using `--fleet`. For example running `captaincore backup @production --fleet` will loop through all CaptainIDs. For a fleet with 3 CaptainIDs that command will run:
-- `captaincore backup @production --captain_id=1`
-- `captaincore backup @production --captain_id=2`
-- `captaincore backup @production --captain_id=3`
+- `captaincore backup @production --captain-id=1`
+- `captaincore backup @production --captain-id=2`
+- `captaincore backup @production --captain-id=3`
 
 ## Commands
 
@@ -33,19 +33,13 @@ Shows commands
 captaincore
 ```
 
-Adds a site to CaptainCore.
+Adds or updates a site from CaptainCore Manager.
 
 ```bash
-captaincore site add <site> --id=<id> --domain=<domain> --username=<username> --password=<password> --address=<address> --protocol=<protocol> --port=<port> --staging_username=<staging_username> --staging_password=<staging_password> --staging_address=<staging_address> --staging_protocol=<staging_protocol> --staging_port=<staging_port> [--preloadusers=<preloadusers>] [--homedir=<homedir>] [--s3accesskey=<s3accesskey>] [--s3secretkey=<s3secretkey>] [--s3bucket=<s3bucket>] [--s3path=<s3path>]
+captaincore site sync <site-id>
 ```
 
-Updates a site in CaptainCore.
-
-```bash
-captaincore site update <site> --id=<id> --domain=<domain> --username=<username> --password=<password> --address=<address> --protocol=<protocol> --port=<port> --staging_username=<staging_username> --staging_password=<staging_password> --staging_address=<staging_address> --staging_protocol=<staging_protocol> --staging_port=<staging_port> [--preloadusers=<preloadusers>] [--homedir=<homedir>] [--s3accesskey=<s3accesskey>] [--s3secretkey=<s3secretkey>] [--s3bucket=<s3bucket>] [--s3path=<s3path>]
-```
-
-Removes a site from CaptainCore CLI.
+Deletes a site from CaptainCore.
 
 ```bash
 captaincore site delete <site>
@@ -54,7 +48,13 @@ captaincore site delete <site>
 Backups one or more sites.
 
 ```bash
-captaincore backup [<site>...] [@<target>] [--use-direct] [--skip-remote] [--skip-db] [--with-staging]
+captaincore backup generate [<site>...] [@<target>] [--skip-remote] [--skip-db]
+```
+
+Download a backup for a site.
+
+```bash
+captaincore backup download <site> <backup-id> <payload> [--email=<email>]
 ```
 
 Get details about a site.
@@ -66,34 +66,34 @@ captaincore site get <site> [--field=<field>] [--bash]
 Creates [Quicksave (plugins/themes)](https://anchor.host/introducing-quicksaves-with-rollbacks/) of website
 
 ```bash
-captaincore quicksave [<site>...] [@<target>] [--force] [--debug]
+captaincore quicksave generate [<site>...] [@<target>] [--force] [--debug]
 ```
 
 Rollback from a Quicksave (theme/plugin)
 
 ```bash
-captaincore rollback <site> <commit> [--plugin=<plugin>] [--theme=<theme>] [--all]
+captaincore quicksave rollback <site> <commit> [--plugin=<plugin>] [--theme=<theme>] [--file=<file>] [--all]
 ```
 
-Login to WordPress using links
-
-```
-captaincore login <site> <login> [--open]
-```
-
-SSH wrapper
+SSH connection to a site
 
 ```bash
-captaincore ssh [<site>..] [@<target>] [--command=<commands>] [--script=<name|file>] [--<script-argument-name>=<script-argument-value>]
+captaincore ssh [<site>...] [@<target>] [--command=<commands>] [--script=<name|file>] -- [--<script-args>=<value>]
 ```
 
-Snapshots one or more sites.
+Generates new snapshot for a site
 
 ```bash
-captaincore snapshot [<site>...] [@<target>] [--email=<email>] [--skip-remote] [--delete-after-snapshot]
+captaincore snapshot generate [<site>...] [@<target>] [--email=<email>] [--notes=<notes>] [--filter=<filter-options>] [--skip-remote] [--delete-after-snapshot]
 ```
 
-Shows last 12 months of stats from self hosted [Fathom Lite](https://github.com/usefathom/fathom).
+Fetches download link for a snapshot
+
+```bash
+captaincore snapshot generate [<site>...] [@<target>] [--email=<email>] [--notes=<notes>] [--filter=<filter-options>] [--skip-remote] [--delete-after-snapshot]
+```
+
+etches stats from [WordPress.com stats](https://wordpress.com/support/stats/), [Fathom Analytics](https://usefathom.com/) or [Fathom Lite](https://github.com/usefathom/fathom).
 
 ```bash
 captaincore stats <site>
@@ -147,21 +147,21 @@ done
 Backup sites
 
 ```bash
-captaincore backup @all
-captaincore backup @production
-captaincore backup @staging
+captaincore backup generate @all
+captaincore backup generate @production
+captaincore backup generate @staging
 ```
 
 Generate quicksave on all sites
 
 ```bash
-captaincore quicksave @all
+captaincore quicksave generate @all
 ```
 
-Monitor check all sites
+Monitor check all production sites
 
 ```bash
-captaincore monitor @all
+captaincore monitor @production
 ```
 
 Run WordPress theme/plugin updates on production sites which have been marked for automatic updates
@@ -173,10 +173,10 @@ captaincore update @production.updates-on
 Launch site. Will change default Kinsta/WP Engine urls to real domain name and drop search engine privacy.
 
 ```bash
-captaincore ssh <site-name> --script=launch --domain=<domain>
+captaincore ssh <site-name> --script=launch -- --domain=<domain>
 ```
 
-Update WordPress core on all sites
+Update WordPress core on all sites one liner
 
 ```bash
 captaincore ssh @all --command="wp core update; wp core update-db"
