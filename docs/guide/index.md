@@ -70,3 +70,20 @@ Any WordPress site can connect to a CaptainCore instance to provider a GUI. Down
 This will prompt to connect to a CaptainCore instance. Fill out info provided by your CaptainCore instance.
 
 ![Connect to instance](/assets/img/connect-instance.png)
+
+## Crontab sample and path configuration
+
+The system `crontab` can be used to schedule repeatable `captaincore` commands. Edit your crontab by running `crontab -e`. Some CaptainCore bash scripts call other `captaincore` commands. In order for those to work properly be sure to extend `PATH` at the top of your crontab file with at minimal `/usr/bin`.
+
+Here is a example crontab which runs `captaincore monitor` every 10 minutes, `captaincore scan-errors` nightly, `captaincore update` once a week for production, `captaincore update` quarterly for staging, `captaincore backup generate` and `captaincore quicksave generate` nightly.
+
+```
+# m h  dom mon dow   command
+PATH=/bin:/usr/local/go/bin:/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+*/10 * * * * captaincore monitor @production --fleet
+45 18 * * * captaincore scan-errors @production --fleet
+15 09 * * 3 captaincore update @production.updates-on --fleet
+15 0 1 */3 * captaincore update @staging.updates-on --fleet
+03 00 * * * captaincore backup generate @production --fleet
+01 00 * * * captaincore quicksave generate @all --fleet
+```
