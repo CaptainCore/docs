@@ -4,7 +4,7 @@
 This project is in alpha development stage, not yet ready for public use.
 :::
 
-CaptainCore is WordPress management toolkit for geeky maintenance professionals. 🚤 👨🏽‍💻 🔄
+A WordPress management toolkit for geeky maintenance professionals. 🚤 👨🏽‍💻 🔄
 
 ## Outgrowing other solutions
 
