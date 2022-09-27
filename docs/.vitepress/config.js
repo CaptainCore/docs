@@ -5,7 +5,7 @@ module.exports = {
   lastUpdated: true,
 
   head: [
-    ['link', { rel: 'icon', href: '/assets/img/logo.png' } ]
+    ['link', { rel: 'icon', href: '/logo.png' } ]
   ],
 
   markdown: {
@@ -24,7 +24,7 @@ module.exports = {
       text: 'Edit on GitHub'
     },
     lastUpdatedText: 'Last Updated',
-    logo: '/assets/img/logo.png',
+    logo: '/logo.png',
     nav: [
       {
         text: 'Home',

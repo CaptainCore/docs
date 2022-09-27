@@ -65,11 +65,11 @@ sudo systemctl start captaincore
 
 Any WordPress site can connect to a CaptainCore instance to provider a GUI. Download and install latest version of CaptainCore's WordPress plugin.
 
-![Activate CaptainCore WordPress plugin](/assets/img/activate-captaincore-plugin.png)
+![Activate CaptainCore WordPress plugin](/activate-captaincore-plugin.png)
 
 This will prompt to connect to a CaptainCore instance. Fill out info provided by your CaptainCore instance.
 
-![Connect to instance](/assets/img/connect-instance.png)
+![Connect to instance](/connect-instance.png)
 
 ## Crontab sample and path configuration
 
