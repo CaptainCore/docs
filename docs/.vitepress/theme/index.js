@@ -1,7 +1,5 @@
-import DefaultTheme from 'vitepress/dist/client/theme-default'
-import './styles/vars.css'
-import "./styles/prism-shades-of-purple.css"
+// .vitepress/theme/index.js
+import DefaultTheme from 'vitepress/theme'
+import './custom.css'
 
-export default {
-  ...DefaultTheme
-}
+export default DefaultTheme
